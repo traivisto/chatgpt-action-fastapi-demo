@@ -1,0 +1,52 @@
+
+---
+
+# 2) The Action’s OpenAPI schema (checked into `openapi.yaml`)
+
+Paste this now; we’ll update the server URL after Render deploys:
+
+```yaml
+openapi: 3.0.3
+info:
+  title: ChatGPT Action Demo
+  version: "1.0.0"
+  description: |
+    A single /greet endpoint that returns a friendly message.
+servers:
+  - url: https://RENDER_SERVICE_URL    # e.g. https://chatgpt-action-fastapi-demo.onrender.com
+paths:
+  /greet:
+    post:
+      operationId: greet
+      summary: Say hi
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name]
+              properties:
+                name:
+                  type: string
+                  description: The name to greet.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        "401":
+          description: Missing or invalid API key
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
