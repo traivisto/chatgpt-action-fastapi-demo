@@ -1,9 +1,8 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
   title: ChatGPT Action Demo
-  version: "1.0.0"
-  description: |
-    A single /greet endpoint that returns a friendly message.
+  version: 1.0.0
+  description: A single /greet endpoint that returns a friendly message.
 servers:
   - url: https://chatgpt-action-fastapi-demo.onrender.com
 paths:
@@ -18,22 +17,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required: [name]
-              properties:
-                name:
-                  type: string
-                  description: The name to greet.
+              $ref: "#/components/schemas/GreetRequest"
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
+                $ref: "#/components/schemas/GreetResponse"
         "401":
           description: Missing or invalid API key
 components:
@@ -42,4 +33,17 @@ components:
       type: apiKey
       in: header
       name: X-API-Key
-      
+  schemas:
+    GreetRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: The name to greet.
+    GreetResponse:
+      type: object
+      properties:
+        message:
+          type: string
