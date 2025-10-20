@@ -1,10 +1,3 @@
-
----
-
-# 2) The Action’s OpenAPI schema (checked into `openapi.yaml`)
-
-Paste this now; we’ll update the server URL after Render deploys:
-
 ```yaml
 openapi: 3.0.3
 info:
