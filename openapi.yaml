@@ -13,7 +13,7 @@ info:
   description: |
     A single /greet endpoint that returns a friendly message.
 servers:
-  - url: https://RENDER_SERVICE_URL    # e.g. https://chatgpt-action-fastapi-demo.onrender.com
+  - url: https://chatgpt-action-fastapi-demo.onrender.com
 paths:
   /greet:
     post:
